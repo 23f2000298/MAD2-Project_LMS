@@ -4,7 +4,7 @@ class Config():
 
 class LocalDevelopmentConfig(Config):
     # configuration
-    SQLALCHEMY_DATABASE_URI = "slite:///lmsv2.sqlite3"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///lmsv2.sqlite3"
     DEBUG = True
 
     #config for security
