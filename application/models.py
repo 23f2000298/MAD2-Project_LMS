@@ -10,6 +10,7 @@ class User(db.Model,UserMixin):
     fs_uniquifier = db.Column(db.String,unique = True,nullable = False)
     active = db.Column(db.Boolean,nullable = False)
     roles = db.relationship("Role",backref = "bearer",secondary = "users_roles")
+    trans = db.relationship("Transaction",backref = "bearer")
 
 
 class Role(db.Model,RoleMixin):
@@ -23,3 +24,20 @@ class UsersRoles(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey("user.id"))
     role_id = db.Column(db.Integer,db.ForeignKey("role.id"))
 
+class City(db.Model):
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String,unique = True,nullable = False)
+
+class Transaction(db.Model):
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String,nullable = False)
+    type = db.Column(db.String,nullable = False)
+    date = db.Column(db.String,nullable = False)
+    delivery = db.Column(db.String,nullable = False,default = "to be updated")
+    source = db.Column(db.String,nullable = False)
+    destination = db.Column(db.String,nullable = False)
+    internal_status = db.Column(db.String,nullable = False,default = "requested")
+    delivery_status = db.Column(db.String,nullable = False,default = "in process")
+    description = db.Column(db.String)
+    amount = db.Column(db.Integer,nullable = 100001)
+    user_id = db.Column(db.Integer,db.ForeignKey("user.id"))
