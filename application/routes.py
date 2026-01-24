@@ -1,4 +1,4 @@
-from flask import current_app as app,jsonify,request
+from flask import current_app as app,jsonify,request,render_template
 from flask_security import auth_required,roles_required,current_user,login_user
 from .models import User,Role,Transaction
 from .database import db
@@ -7,9 +7,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 
 @app.route("/",methods = ["GET"])
 def home():
-    return jsonify({
-        "message": "Hello World:Home Page!"
-    })
+    return render_template("index.html")
 
 @app.route("/api/admin")
 @auth_required("token") #authentication
