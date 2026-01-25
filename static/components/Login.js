@@ -4,17 +4,17 @@ export default{
         <div class =  "col" style="height: 750;">
             <div class = "border mx-auto mt-5" style="height: 400px;width: 300px;">
                <div>
-                <p class="text-danger">{{message}}</p>
+                <p class="mx-2 mt-3 text-danger">{{message}}</p>
                 <h2 class = "text-center">Login Form</h2>
-                <div>
-                    <label for="email">Enter Your Email:</label>
-                    <input type="text" id="email" v-model="formData.email" placeholder="Enter Your Email">
+                <div class="mx-2 mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" v-model="formData.email">
                 </div>
-                <div>
-                    <label for="password">Enter Your Password:</label>
-                    <input type="password" id="pass" v-model="formData.password" placeholder="Enter Your Password">
+                <div class="mx-2 mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" v-model="formData.password">
                 </div>
-                <div>
+                <div class="mx-2 mb-3 text-center">
                     <button class="btn btn-primary" @click="loginUser">Login</button>
                 </div>
             </div>
@@ -43,15 +43,21 @@ export default{
             .then(response => response.json())
 
             .then(data =>{
+                if (Object.keys(data).includes("auth-token")){
                     localStorage.setItem("auth_token",data["auth-token"])
                     localStorage.setItem("id",data.id)
+                    localStorage.setItem("username",data.username)
                     this.$router.push("/dashboard")
-                })
+                }
+                else{
+                    this.message = data.message
+                }
+            })
 
             
-            }
-           
         }
+           
+    }
  }
     
 

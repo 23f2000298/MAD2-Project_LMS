@@ -21,3 +21,16 @@
         <button class="btn btn-primary" @click="loginUser">Login</button>
     </div>
 </div>
+
+
+<div v-for = "for t in transactions" class = "card">
+    <div class="card-body">
+        <h5 class="card-title">{{t.name}} <span class="badge bg-secondary">{{t.type}}</span> </h5>
+        <p class="card-text">created on {{t.date}}</p>
+        <p class="card-text">Delivery: {{t.delivery}}</p>
+        <p class="card-text">About: {{t.description}}</p>
+        <p class="card-text">From: {{t.source}} to {{t.destination}}</p>
+        <p class="card-text">Amount: {{t.amount}}</p>
+        
+    </div>
+</div>
