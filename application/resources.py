@@ -101,9 +101,9 @@ class TransApi(Resource):
             return ({
                 "message":"Transaction deleted successfully"
             })
-        return ({
+        return {
             "message":"Transaction not found"
-        }),404
+        },404
 
             
     
